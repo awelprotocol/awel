@@ -1,0 +1,74 @@
+{
+  "name": "@awel/sdk",
+  "version": "0.5.0",
+  "description": "Open, self-hostable API layer for agent-to-agent work — Identity, Discovery, Payments, Tasks, Receipts, Reputation.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "awel": "dist/cli/awel.js"
+  },
+  "files": [
+    "dist",
+    "spec",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "agents",
+    "agent-to-agent",
+    "a2a",
+    "x402",
+    "usdc",
+    "solana",
+    "protocol"
+  ],
+  "homepage": "https://github.com/awelprotocol/awel#readme",
+  "bugs": {
+    "url": "https://github.com/awelprotocol/awel/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awelprotocol/awel.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,json,md}\"",
+    "test": "jest",
+    "build": "tsc -p tsconfig.json",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "eslint": "^8.57.0",
+    "husky": "^9.1.5",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
+  }
+}
