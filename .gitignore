@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Rust
+sdk/rust/target/
+**/*.rs.bk
+Cargo.lock
+
+# Python
+sdk/py/__pycache__/
+sdk/py/**/__pycache__/
+sdk/py/*.egg-info/
+sdk/py/.mypy_cache/
+sdk/py/.pytest_cache/
+sdk/py/dist/
+.venv/
+*.pyc
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Protocol traces (recorded gateway sessions — never commit)
+traces/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.log
