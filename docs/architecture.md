@@ -195,3 +195,5 @@ to end. See [RFC-0001 §4](../spec/RFC-0001-task-protocol.md) for delegation sem
 <!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
 
 <!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
+
+<!-- maint: docs: add delegate() example to quickstart (2026-06-16) -->
