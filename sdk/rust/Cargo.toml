@@ -1,0 +1,24 @@
+[package]
+name = "awel"
+version = "0.5.0"
+edition = "2021"
+rust-version = "1.78"
+description = "Rust client for Awel — the open API layer for agent-to-agent work"
+license = "Apache-2.0"
+repository = "https://github.com/awelprotocol/awel"
+homepage = "https://github.com/awelprotocol/awel"
+documentation = "https://docs.rs/awel"
+readme = "../../README.md"
+keywords = ["agents", "x402", "usdc", "solana", "a2a"]
+categories = ["api-bindings", "web-programming"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+
+[features]
+default = []
+# Enables the async reqwest-backed transport. Off by default so the
+# crate stays dependency-light for consumers that bring their own client.
+reqwest-transport = []
