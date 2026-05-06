@@ -1,0 +1,21 @@
+version: 2
+updates:
+  # Security advisories still surface, but routine version-bump PRs are
+  # disabled (limit: 0) to avoid PR spam. Bump manually on the release branch.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+    open-pull-requests-limit: 0
+    labels:
+      - "dependencies"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+    open-pull-requests-limit: 0
+    labels:
+      - "ci"

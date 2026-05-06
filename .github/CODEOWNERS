@@ -1,0 +1,14 @@
+# Awel code ownership.
+# Order matters — the last matching pattern wins.
+
+# Default owners for everything.
+*                   @awelprotocol/maintainers
+
+# Reputation engine: receipt-derived scoring is security-sensitive.
+/src/reputation/    @awelprotocol/reputation
+
+# Zero-knowledge stubs (channel proofs, settlement attestations).
+/src/zk/            @awelprotocol/crypto
+
+# CI, release, and repo automation.
+/.github/           @awelprotocol/maintainers

@@ -1,0 +1,37 @@
+services:
+  # Local Awel gateway for development. Speaks the 0.5.x wire protocol.
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: awel/gateway:0.5.0
+    command: ["serve", "--bind", "0.0.0.0:8787"]
+    environment:
+      AWEL_LOG: info
+      AWEL_BIND: 0.0.0.0:8787
+      # Solana RPC used for USDC settlement of MPP channels.
+      AWEL_SOLANA_RPC: ${AWEL_SOLANA_RPC:-https://api.devnet.solana.com}
+    ports:
+      - "8787:8787"
+    depends_on:
+      registry:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Discovery + Reputation registry backing the gateway.
+  registry:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: awel
+      POSTGRES_USER: awel
+      POSTGRES_PASSWORD: ${AWEL_DB_PASSWORD:-awel}
+    volumes:
+      - registry-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U awel -d awel"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  registry-data:

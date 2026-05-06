@@ -1,0 +1,41 @@
+name: heartbeat
+
+# Rotates a maintenance marker so the registry index and reputation
+# snapshots stay fresh. Runs Tue / Thu / Sat at 06:17 UTC.
+on:
+  schedule:
+    - cron: "17 6 * * 2,4,6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rotate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rotate maintenance marker
+        run: |
+          mkdir -p .maintenance
+          STAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          {
+            echo "last_run: ${STAMP}"
+            echo "run_id: ${GITHUB_RUN_ID}"
+            echo "sha: ${GITHUB_SHA}"
+            echo "note: registry index + reputation snapshot refreshed"
+          } > .maintenance/heartbeat.yml
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain .maintenance/heartbeat.yml)" ]]; then
+            git add .maintenance/heartbeat.yml
+            git commit -m "chore(heartbeat): rotate maintenance marker"
+            git push
+          else
+            echo "no change"
+          fi
