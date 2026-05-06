@@ -275,3 +275,5 @@ export class AwelClient {
 // maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-06-16)
 
 // maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16)
+
+// maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16)
