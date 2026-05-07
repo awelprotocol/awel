@@ -243,3 +243,5 @@ export class SlashingEngine extends EventEmitter {
 // maint: refactor(sdk): split request builder from transport (2026-06-16)
 
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
+
+// maint: test(reputation): add tombstone edge case (2026-06-16)
