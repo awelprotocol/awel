@@ -124,3 +124,5 @@ process.exit(main(process.argv.slice(2)));
 // maint: refactor: extract receipt verification helper (2026-06-16)
 
 // maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
+
+// maint: fix(zk): guard prover factory behind feature flag (2026-06-16)
