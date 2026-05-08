@@ -201,3 +201,5 @@ to end. See [RFC-0001 §4](../spec/RFC-0001-task-protocol.md) for delegation sem
 <!-- maint: refactor(config): centralize env parsing (2026-06-16) -->
 
 <!-- maint: docs: expand architecture data-flow notes (2026-06-16) -->
+
+<!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16) -->
