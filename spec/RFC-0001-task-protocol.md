@@ -226,3 +226,5 @@ for await (const ev of awel.streamTask(id)) {
 <!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
 
 <!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16) -->
+
+<!-- maint: refactor: extract receipt verification helper (2026-06-16) -->
