@@ -277,3 +277,5 @@ export class AwelClient {
 // maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16)
 
 // maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16)
+
+// maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
