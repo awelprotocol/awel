@@ -116,3 +116,5 @@ export type { FeatureFlags } from "./config/features.js";
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
 
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
+
+// maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-06-16)
