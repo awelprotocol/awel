@@ -279,3 +279,5 @@ export class AwelClient {
 // maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16)
 
 // maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
+
+// maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-06-16)
