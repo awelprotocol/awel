@@ -83,3 +83,5 @@ export {};
 // maint: docs: add delegate() example to quickstart (2026-06-16)
 
 // maint: fix(cli): usage text for find command (2026-06-16)
+
+// maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16)
