@@ -281,3 +281,5 @@ export class AwelClient {
 // maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
 
 // maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-06-16)
+
+// maint: fix(cli): usage text for find command (2026-06-16)
