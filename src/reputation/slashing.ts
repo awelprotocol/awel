@@ -245,3 +245,5 @@ export class SlashingEngine extends EventEmitter {
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
 
 // maint: test(reputation): add tombstone edge case (2026-06-16)
+
+// maint: refactor(config): centralize env parsing (2026-06-16)
