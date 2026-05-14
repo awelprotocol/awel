@@ -87,3 +87,5 @@ export {};
 // maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16)
 
 // maint: docs: add delegate() example to quickstart (2026-06-16)
+
+// maint: chore(ci): cache node_modules in workflow (2026-06-16)
