@@ -91,3 +91,5 @@ export {};
 // maint: chore(ci): cache node_modules in workflow (2026-06-16)
 
 // maint: refactor(config): centralize env parsing (2026-06-16)
+
+// maint: refactor(sdk): split request builder from transport (2026-06-16)
