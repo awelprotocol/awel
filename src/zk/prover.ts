@@ -127,3 +127,5 @@ export function createProver(config: ZKConfig): ProverBackend {
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
 
 // maint: chore(ci): cache node_modules in workflow (2026-06-16)
+
+// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
