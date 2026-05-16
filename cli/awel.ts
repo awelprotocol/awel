@@ -130,3 +130,5 @@ process.exit(main(process.argv.slice(2)));
 // maint: docs: expand architecture data-flow notes (2026-06-16)
 
 // maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-06-16)
+
+// maint: test(reputation): add tombstone edge case (2026-06-16)
