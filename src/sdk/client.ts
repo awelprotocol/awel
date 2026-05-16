@@ -285,3 +285,5 @@ export class AwelClient {
 // maint: fix(cli): usage text for find command (2026-06-16)
 
 // maint: docs: expand architecture data-flow notes (2026-06-16)
+
+// maint: chore: bump dev deps (2026-06-16)
