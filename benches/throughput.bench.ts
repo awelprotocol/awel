@@ -93,3 +93,5 @@ export {};
 // maint: refactor(config): centralize env parsing (2026-06-16)
 
 // maint: refactor(sdk): split request builder from transport (2026-06-16)
+
+// maint: refactor: extract receipt verification helper (2026-06-16)
