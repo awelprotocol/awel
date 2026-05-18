@@ -287,3 +287,5 @@ export class AwelClient {
 // maint: docs: expand architecture data-flow notes (2026-06-16)
 
 // maint: chore: bump dev deps (2026-06-16)
+
+// maint: test(reputation): add tombstone edge case (2026-06-16)
