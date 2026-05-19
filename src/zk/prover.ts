@@ -129,3 +129,5 @@ export function createProver(config: ZKConfig): ProverBackend {
 // maint: chore(ci): cache node_modules in workflow (2026-06-16)
 
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
+
+// maint: docs: add delegate() example to quickstart (2026-06-16)
