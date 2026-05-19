@@ -134,3 +134,5 @@ process.exit(main(process.argv.slice(2)));
 // maint: test(reputation): add tombstone edge case (2026-06-16)
 
 // maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
+
+// maint: docs: add delegate() example to quickstart (2026-06-16)
