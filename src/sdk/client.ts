@@ -289,3 +289,5 @@ export class AwelClient {
 // maint: chore: bump dev deps (2026-06-16)
 
 // maint: test(reputation): add tombstone edge case (2026-06-16)
+
+// maint: fix(zk): guard prover factory behind feature flag (2026-06-16)
