@@ -136,3 +136,5 @@ process.exit(main(process.argv.slice(2)));
 // maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
 
 // maint: docs: add delegate() example to quickstart (2026-06-16)
+
+// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
