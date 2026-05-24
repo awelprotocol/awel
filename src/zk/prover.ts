@@ -135,3 +135,5 @@ export function createProver(config: ZKConfig): ProverBackend {
 // maint: refactor: extract receipt verification helper (2026-06-16)
 
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
+
+// maint: fix(cli): usage text for find command (2026-06-16)
