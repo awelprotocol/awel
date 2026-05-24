@@ -124,3 +124,5 @@ export type { FeatureFlags } from "./config/features.js";
 // maint: refactor(sdk): split request builder from transport (2026-06-16)
 
 // maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16)
+
+// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
