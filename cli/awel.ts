@@ -142,3 +142,5 @@ process.exit(main(process.argv.slice(2)));
 // maint: test(sdk): typed envelope round-trip (2026-06-16)
 
 // maint: docs: add delegate() example to quickstart (2026-05-03)
+
+// maint: fix(reputation): bigint underflow guard on slash amount (2026-05-04)
