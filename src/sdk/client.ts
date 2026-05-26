@@ -295,3 +295,5 @@ export class AwelClient {
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16)
 
 // maint: chore(ci): cache node_modules in workflow (2026-06-16)
+
+// maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-06-16)
