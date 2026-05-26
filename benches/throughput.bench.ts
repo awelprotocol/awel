@@ -103,3 +103,5 @@ export {};
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16)
 
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-05-01)
+
+// maint: chore(ci): cache node_modules in workflow (2026-05-02)
