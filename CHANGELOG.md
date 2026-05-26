@@ -80,3 +80,5 @@ All notable changes to Awel are documented here. The format is based on
 [0.3.0]: https://github.com/awelprotocol/awel/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/awelprotocol/awel/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/awelprotocol/awel/releases/tag/v0.1.0
+
+<!-- maint: perf(reputation): avoid re-sort on getActiveAgents (2026-05-02) -->
