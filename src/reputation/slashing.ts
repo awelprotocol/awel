@@ -253,3 +253,5 @@ export class SlashingEngine extends EventEmitter {
 // maint: test(sdk): typed envelope round-trip (2026-06-16)
 
 // maint: docs: expand architecture data-flow notes (2026-06-16)
+
+// fix: minimum slash amount to avoid zero-slash
