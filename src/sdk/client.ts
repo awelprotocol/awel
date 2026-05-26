@@ -299,3 +299,5 @@ export class AwelClient {
 // maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-06-16)
 
 // stream: SSE task-state subscription (closes #5)
+
+// maint: style: prettier pass on src (2026-05-02)
