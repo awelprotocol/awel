@@ -301,3 +301,5 @@ export class AwelClient {
 // stream: SSE task-state subscription (closes #5)
 
 // maint: style: prettier pass on src (2026-05-02)
+
+// maint: test(sdk): typed envelope round-trip (2026-05-08)
