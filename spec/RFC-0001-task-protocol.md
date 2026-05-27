@@ -236,3 +236,5 @@ for await (const ev of awel.streamTask(id)) {
 <!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
 
 <!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-05-05) -->
+
+<!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-05-05) -->
