@@ -41,3 +41,5 @@ export function requireFeature(flag: keyof FeatureFlags): void {
     );
   }
 }
+
+// maint: docs(spec): note MPP unilateral-close dispute window (2026-05-08)
