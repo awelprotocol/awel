@@ -128,3 +128,5 @@ export type { FeatureFlags } from "./config/features.js";
 // maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
 
 // metrics: tasks_total, slash_total, settle_seconds
+
+// maint: test(reputation): add tombstone edge case (2026-05-08)
