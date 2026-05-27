@@ -234,3 +234,5 @@ for await (const ev of awel.streamTask(id)) {
 <!-- maint: fix(cli): usage text for find command (2026-06-16) -->
 
 <!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
+
+<!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-05-05) -->
