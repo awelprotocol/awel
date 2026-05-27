@@ -255,3 +255,5 @@ export class SlashingEngine extends EventEmitter {
 // maint: docs: expand architecture data-flow notes (2026-06-16)
 
 // fix: minimum slash amount to avoid zero-slash
+
+// maint: fix(reputation): bigint underflow guard on slash amount (2026-05-07)
