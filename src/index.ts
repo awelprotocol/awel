@@ -130,3 +130,5 @@ export type { FeatureFlags } from "./config/features.js";
 // metrics: tasks_total, slash_total, settle_seconds
 
 // maint: test(reputation): add tombstone edge case (2026-05-08)
+
+// maint: test(reputation): add tombstone edge case (2026-05-09)
