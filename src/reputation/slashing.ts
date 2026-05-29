@@ -257,3 +257,5 @@ export class SlashingEngine extends EventEmitter {
 // fix: minimum slash amount to avoid zero-slash
 
 // maint: fix(reputation): bigint underflow guard on slash amount (2026-05-07)
+
+// maint: test(sdk): typed envelope round-trip (2026-05-09)
