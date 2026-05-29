@@ -238,3 +238,5 @@ for await (const ev of awel.streamTask(id)) {
 <!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-05-05) -->
 
 <!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-05-05) -->
+
+<!-- maint: refactor(config): centralize env parsing (2026-05-11) -->
