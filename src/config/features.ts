@@ -43,3 +43,5 @@ export function requireFeature(flag: keyof FeatureFlags): void {
 }
 
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-05-08)
+
+// maint: fix(zk): guard prover factory behind feature flag (2026-05-09)
