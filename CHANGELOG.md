@@ -84,3 +84,5 @@ All notable changes to Awel are documented here. The format is based on
 <!-- maint: perf(reputation): avoid re-sort on getActiveAgents (2026-05-02) -->
 
 <!-- maint: fix(zk): guard prover factory behind feature flag (2026-05-07) -->
+
+<!-- maint: chore: bump dev deps (2026-05-11) -->
