@@ -105,3 +105,5 @@ export {};
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-05-01)
 
 // maint: chore(ci): cache node_modules in workflow (2026-05-02)
+
+// maint: refactor(sdk): split request builder from transport (2026-05-12)
