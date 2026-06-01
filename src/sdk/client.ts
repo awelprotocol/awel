@@ -305,3 +305,5 @@ export class AwelClient {
 // maint: test(sdk): typed envelope round-trip (2026-05-08)
 
 // maint: chore(ci): cache node_modules in workflow (2026-05-12)
+
+// maint: style: prettier pass on src (2026-05-15)
