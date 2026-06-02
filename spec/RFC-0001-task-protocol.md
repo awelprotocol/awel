@@ -240,3 +240,5 @@ for await (const ev of awel.streamTask(id)) {
 <!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-05-05) -->
 
 <!-- maint: refactor(config): centralize env parsing (2026-05-11) -->
+
+<!-- maint: chore(ci): cache node_modules in workflow (2026-05-18) -->
