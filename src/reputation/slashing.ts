@@ -261,3 +261,5 @@ export class SlashingEngine extends EventEmitter {
 // maint: test(sdk): typed envelope round-trip (2026-05-09)
 
 // maint: fix(cli): usage text for find command (2026-05-13)
+
+// maint: refactor(config): centralize env parsing (2026-05-18)
