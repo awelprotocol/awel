@@ -139,3 +139,5 @@ export function createProver(config: ZKConfig): ProverBackend {
 // maint: fix(cli): usage text for find command (2026-06-16)
 
 // maint: refactor(config): centralize env parsing (2026-06-16)
+
+// maint: docs(spec): note MPP unilateral-close dispute window (2026-05-21)
