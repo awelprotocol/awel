@@ -307,3 +307,5 @@ export class AwelClient {
 // maint: chore(ci): cache node_modules in workflow (2026-05-12)
 
 // maint: style: prettier pass on src (2026-05-15)
+
+// maint: chore(deps): bump @types/node (2026-05-28)
