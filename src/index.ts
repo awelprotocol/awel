@@ -134,3 +134,5 @@ export type { FeatureFlags } from "./config/features.js";
 // maint: test(reputation): add tombstone edge case (2026-05-09)
 
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-05-25)
+
+// maint: docs(spec): note MPP unilateral-close dispute window (2026-05-28)
