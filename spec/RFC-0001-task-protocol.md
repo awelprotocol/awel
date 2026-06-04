@@ -244,3 +244,5 @@ for await (const ev of awel.streamTask(id)) {
 <!-- maint: chore(ci): cache node_modules in workflow (2026-05-18) -->
 
 <!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-05-24) -->
+
+<!-- maint: chore(ci): cache node_modules in workflow (2026-05-25) -->
