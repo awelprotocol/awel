@@ -53,3 +53,5 @@ export function requireFeature(flag: keyof FeatureFlags): void {
 // maint: fix(zk): guard prover factory behind feature flag (2026-05-22)
 
 // maint: chore: bump dev deps (2026-05-27)
+
+// maint: chore(deps): bump @types/node (2026-05-29)
