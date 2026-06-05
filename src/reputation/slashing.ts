@@ -263,3 +263,5 @@ export class SlashingEngine extends EventEmitter {
 // maint: fix(cli): usage text for find command (2026-05-13)
 
 // maint: refactor(config): centralize env parsing (2026-05-18)
+
+// maint: style: prettier pass on src (2026-05-29)
