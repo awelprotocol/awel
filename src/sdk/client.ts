@@ -309,3 +309,5 @@ export class AwelClient {
 // maint: style: prettier pass on src (2026-05-15)
 
 // maint: chore(deps): bump @types/node (2026-05-28)
+
+// maint: perf(reputation): avoid re-sort on getActiveAgents (2026-05-31)
