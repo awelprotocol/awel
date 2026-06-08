@@ -90,3 +90,5 @@ All notable changes to Awel are documented here. The format is based on
 <!-- maint: fix(zk): guard prover factory behind feature flag (2026-05-24) -->
 
 <!-- maint: docs: expand architecture data-flow notes (2026-06-01) -->
+
+<!-- maint: docs: add delegate() example to quickstart (2026-06-02) -->
