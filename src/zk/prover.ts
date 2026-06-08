@@ -141,3 +141,5 @@ export function createProver(config: ZKConfig): ProverBackend {
 // maint: refactor(config): centralize env parsing (2026-06-16)
 
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-05-21)
+
+// maint: refactor: extract receipt verification helper (2026-06-02)
