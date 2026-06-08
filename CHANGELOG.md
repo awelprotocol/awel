@@ -88,3 +88,5 @@ All notable changes to Awel are documented here. The format is based on
 <!-- maint: chore: bump dev deps (2026-05-11) -->
 
 <!-- maint: fix(zk): guard prover factory behind feature flag (2026-05-24) -->
+
+<!-- maint: docs: expand architecture data-flow notes (2026-06-01) -->
