@@ -213,3 +213,5 @@ to end. See [RFC-0001 §4](../spec/RFC-0001-task-protocol.md) for delegation sem
 <!-- maint: fix(zk): guard prover factory behind feature flag (2026-06-01) -->
 
 <!-- maint: docs: expand architecture data-flow notes (2026-06-04) -->
+
+<!-- maint: docs: add delegate() example to quickstart (2026-06-05) -->
