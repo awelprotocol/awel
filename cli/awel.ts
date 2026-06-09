@@ -148,3 +148,5 @@ process.exit(main(process.argv.slice(2)));
 // maint: chore(deps): bump @types/node (2026-05-14)
 
 // maint: chore(deps): bump @types/node (2026-05-24)
+
+// maint: style: prettier pass on src (2026-06-04)
