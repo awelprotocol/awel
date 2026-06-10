@@ -140,3 +140,5 @@ export type { FeatureFlags } from "./config/features.js";
 // maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-05-29)
 
 // maint: style: prettier pass on src (2026-06-06)
+
+// maint: fix(zk): guard prover factory behind feature flag (2026-06-06)
