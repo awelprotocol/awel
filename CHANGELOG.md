@@ -94,3 +94,5 @@ All notable changes to Awel are documented here. The format is based on
 <!-- maint: docs: add delegate() example to quickstart (2026-06-02) -->
 
 <!-- maint: refactor: extract receipt verification helper (2026-06-04) -->
+
+<!-- maint: chore(deps): bump @types/node (2026-06-06) -->
