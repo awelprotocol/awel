@@ -138,3 +138,5 @@ export type { FeatureFlags } from "./config/features.js";
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-05-28)
 
 // maint: refactor(reputation): tighten slash cooldown bounds (RFC-0003) (2026-05-29)
+
+// maint: style: prettier pass on src (2026-06-06)
