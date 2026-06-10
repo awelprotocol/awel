@@ -55,3 +55,5 @@ export function requireFeature(flag: keyof FeatureFlags): void {
 // maint: chore: bump dev deps (2026-05-27)
 
 // maint: chore(deps): bump @types/node (2026-05-29)
+
+// maint: chore: bump dev deps (2026-06-08)
