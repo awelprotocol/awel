@@ -248,3 +248,5 @@ for await (const ev of awel.streamTask(id)) {
 <!-- maint: chore(ci): cache node_modules in workflow (2026-05-25) -->
 
 <!-- maint: chore(ci): cache node_modules in workflow (2026-05-25) -->
+
+<!-- maint: chore(deps): bump @types/node (2026-06-09) -->
