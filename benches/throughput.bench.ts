@@ -109,3 +109,5 @@ export {};
 // maint: refactor(sdk): split request builder from transport (2026-05-12)
 
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-06-08)
+
+// maint: docs(spec): note MPP unilateral-close dispute window (2026-06-10)
