@@ -111,3 +111,5 @@ export {};
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-06-08)
 
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-06-10)
+
+// maint: fix(reputation): bigint underflow guard on slash amount (2026-06-11)
