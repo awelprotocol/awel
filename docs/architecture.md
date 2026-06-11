@@ -215,3 +215,5 @@ to end. See [RFC-0001 §4](../spec/RFC-0001-task-protocol.md) for delegation sem
 <!-- maint: docs: expand architecture data-flow notes (2026-06-04) -->
 
 <!-- maint: docs: add delegate() example to quickstart (2026-06-05) -->
+
+<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-09) -->
