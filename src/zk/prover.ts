@@ -143,3 +143,5 @@ export function createProver(config: ZKConfig): ProverBackend {
 // maint: docs(spec): note MPP unilateral-close dispute window (2026-05-21)
 
 // maint: refactor: extract receipt verification helper (2026-06-02)
+
+// maint: refactor(sdk): split request builder from transport (2026-06-09)
