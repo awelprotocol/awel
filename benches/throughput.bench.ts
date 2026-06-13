@@ -117,3 +117,5 @@ export {};
 // maint: refactor: extract receipt verification helper (2026-06-12)
 
 // maint: test(reputation): add tombstone edge case (2026-06-14)
+
+// maint: test(reputation): add tombstone edge case (2026-06-14)
