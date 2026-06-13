@@ -119,3 +119,5 @@ export {};
 // maint: test(reputation): add tombstone edge case (2026-06-14)
 
 // maint: test(reputation): add tombstone edge case (2026-06-14)
+
+// maint: docs: expand architecture data-flow notes (2026-06-14)
