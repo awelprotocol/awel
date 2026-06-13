@@ -4,14 +4,14 @@
 
 **The open, self-hostable API layer for agent-to-agent work.**
 
-*Identity, discovery, payments, tasks, receipts, and reputation — the primitives HTTP forgot.*
+_Identity, discovery, payments, tasks, receipts, and reputation — the primitives HTTP forgot._
 
 [![GitHub stars](https://img.shields.io/badge/stars-73-yellow?logo=github)](https://github.com/awelprotocol/awel)
-[![npm downloads](https://img.shields.io/badge/downloads-2.3k%2Fmo-blue?logo=npm)](https://www.npmjs.com/package/@awel/sdk)
+[![version](https://img.shields.io/badge/version-0.5.0--alpha-blue?logo=npm)](https://github.com/awelprotocol/awel/releases)
 [![contributors](https://img.shields.io/badge/contributors-3-orange?logo=github)](https://github.com/awelprotocol/awel/graphs/contributors)
 [![Discord](https://img.shields.io/badge/discord-340-5865F2?logo=discord&logoColor=white)](https://discord.gg/awel)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](./LICENSE)
-[![CI](https://img.shields.io/badge/CI-passing-brightgreen?logo=githubactions&logoColor=white)](https://github.com/awelprotocol/awel/actions)
+[![CI](https://github.com/awelprotocol/awel/actions/workflows/ci.yml/badge.svg)](https://github.com/awelprotocol/awel/actions/workflows/ci.yml)
 
 </div>
 
@@ -30,10 +30,10 @@
 
 HTTP is a phenomenal transport for documents and RPC. It is a terrible transport for
 **autonomous agents transacting with each other**, because it has no native answer to
-four questions that every agent-to-agent interaction needs to settle *before* work begins:
+four questions that every agent-to-agent interaction needs to settle _before_ work begins:
 
-1. **Who are you?** HTTP has TLS for the *server*, but no portable, verifiable identity
-   for the *caller*. An agent calling another agent is just an anonymous socket.
+1. **Who are you?** HTTP has TLS for the _server_, but no portable, verifiable identity
+   for the _caller_. An agent calling another agent is just an anonymous socket.
 2. **How do I pay you?** There is no in-band way to attach value to a request. Payment
    lives out-of-band, in API keys, Stripe dashboards, and invoices reconciled by humans.
 3. **What did we agree happened?** A `200 OK` is not a receipt. There is no signed,
@@ -44,7 +44,7 @@ four questions that every agent-to-agent interaction needs to settle *before* wo
 Today every agent framework reinvents these badly: bearer tokens for identity, a credit-card
 form for payment, a JSON blob for "results," and a star rating locked inside one marketplace.
 
-**Awel makes these first-class.** It is a thin, self-hostable API layer that sits *beside*
+**Awel makes these first-class.** It is a thin, self-hostable API layer that sits _beside_
 HTTP and gives agents a shared vocabulary for identity, discovery, payments, tasks, receipts,
 and reputation. You run it yourself. It speaks open RFCs. It settles in USDC on Solana when
 real value changes hands, and it never asks you to trust a central operator with your money
@@ -60,14 +60,14 @@ the SDKs are generated against those RFCs — not the other way around.
 Awel is six composable layers. You can adopt them independently — run just Identity +
 Discovery for a free agent directory, or layer Payments + Receipts on top when money is involved.
 
-| Layer | Primitive | What it answers | SDK surface |
-|-------|-----------|-----------------|-------------|
-| **1. Identity** | Agent DID + signed envelopes | "Who is calling, and can they prove it?" | `awel.register()` |
-| **2. Discovery** | Capability-indexed registry | "Which agents can do task X, and at what price?" | `awel.findAgents()` |
-| **3. Payments** | x402 challenges + MPP channels | "How does value move with the request?" | (implicit in `sendTask`) |
-| **4. Tasks** | Signed task objects + state machine | "What was asked, what's the status, what came back?" | `awel.sendTask()`, `awel.getTask()`, `awel.delegate()` |
-| **5. Receipts** | Signed, hash-linked outcome proofs | "What did both parties agree happened?" | `awel.getReceipt()` |
-| **6. Reputation** | On-chain-derived score + stake | "Should I trust this agent with the next job?" | (read via `findAgents`) |
+| Layer             | Primitive                           | What it answers                                      | SDK surface                                            |
+| ----------------- | ----------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ |
+| **1. Identity**   | Agent DID + signed envelopes        | "Who is calling, and can they prove it?"             | `awel.register()`                                      |
+| **2. Discovery**  | Capability-indexed registry         | "Which agents can do task X, and at what price?"     | `awel.findAgents()`                                    |
+| **3. Payments**   | x402 challenges + MPP channels      | "How does value move with the request?"              | (implicit in `sendTask`)                               |
+| **4. Tasks**      | Signed task objects + state machine | "What was asked, what's the status, what came back?" | `awel.sendTask()`, `awel.getTask()`, `awel.delegate()` |
+| **5. Receipts**   | Signed, hash-linked outcome proofs  | "What did both parties agree happened?"              | `awel.getReceipt()`                                    |
+| **6. Reputation** | On-chain-derived score + stake      | "Should I trust this agent with the next job?"       | (read via `findAgents`)                                |
 
 Each layer is specified in an RFC:
 
@@ -130,7 +130,7 @@ Full component breakdown and task lifecycle: [`docs/architecture.md`](./docs/arc
 ## Quick start
 
 ```bash
-npm i @awel/sdk
+npm i github:awelprotocol/awel   # npm registry (@awel/sdk) lands with v0.6
 ```
 
 ```ts
@@ -154,7 +154,7 @@ await awel.register({
 // 2. Find an agent that can transcribe audio, ranked by reputation.
 const [worker] = await awel.findAgents({
   capability: "audio.transcribe",
-  maxPriceUsdc: 0.10,
+  maxPriceUsdc: 0.1,
   minReputation: 0.8,
 });
 
@@ -163,7 +163,7 @@ const task = await awel.sendTask({
   to: worker.did,
   capability: "audio.transcribe",
   input: { url: "https://example.com/clip.wav", lang: "en" },
-  budgetUsdc: 0.10,
+  budgetUsdc: 0.1,
 });
 
 // 4. Poll (or stream) until the task settles.
@@ -194,16 +194,16 @@ See [RFC-0001](./spec/RFC-0001-task-protocol.md) for the full task object and st
 Awel supports two payment rails. Both settle in USDC on Solana; they differ in granularity.
 Pick per-task — the SDK negotiates the rail during the task handshake.
 
-| | **x402** | **MPP (micro-payment channels)** |
-|---|---|---|
-| **Best for** | One-shot, coarse-grained tasks | High-frequency / streaming work |
-| **Mechanism** | HTTP `402` challenge → pay → retry | Open channel, stream signed updates, settle once |
-| **On-chain ops** | 1 settle per task | 1 open + 1 settle per *channel* (many tasks) |
-| **Latency** | One round-trip + confirmation | Sub-second after channel is open |
-| **Granularity** | Per task | Per token / per chunk |
-| **Refunds** | Full or partial on failed task | Unspent channel balance returned on close |
-| **Escrow** | Optional escrow account | Channel balance *is* the escrow |
-| **Overhead** | Higher (on-chain per task) | Amortized across the channel's lifetime |
+|                  | **x402**                           | **MPP (micro-payment channels)**                 |
+| ---------------- | ---------------------------------- | ------------------------------------------------ |
+| **Best for**     | One-shot, coarse-grained tasks     | High-frequency / streaming work                  |
+| **Mechanism**    | HTTP `402` challenge → pay → retry | Open channel, stream signed updates, settle once |
+| **On-chain ops** | 1 settle per task                  | 1 open + 1 settle per _channel_ (many tasks)     |
+| **Latency**      | One round-trip + confirmation      | Sub-second after channel is open                 |
+| **Granularity**  | Per task                           | Per token / per chunk                            |
+| **Refunds**      | Full or partial on failed task     | Unspent channel balance returned on close        |
+| **Escrow**       | Optional escrow account            | Channel balance _is_ the escrow                  |
+| **Overhead**     | Higher (on-chain per task)         | Amortized across the channel's lifetime          |
 
 Rule of thumb: **x402 for occasional, chunky jobs; MPP when an agent will call another agent
 hundreds of times.** Both are specified in [RFC-0002](./spec/RFC-0002-payments.md).
@@ -233,7 +233,7 @@ agents are mutually distrustful, and the network is adversarial. The design goal
 - **Replay protection.** Task envelopes carry a nonce + expiry; receipts are single-use per task.
 
 What Awel does **not** defend against (out of scope, by design): a worker that produces
-*wrong* output for a task it accepted (mitigated economically via reputation + slashing, not
+_wrong_ output for a task it accepted (mitigated economically via reputation + slashing, not
 cryptographically); collusion between requester and worker to inflate each other's reputation
 (mitigated by stake-weighting and volume sybil-resistance — see RFC-0003 §5); and key theft
 on a compromised agent host (your responsibility — use an HSM / enclave for high-value agents).
@@ -243,14 +243,14 @@ security bugs.
 
 ### Audit status
 
-| Component | Reviewer | Status | Target |
-|-----------|----------|--------|--------|
-| SDK (`@awel/sdk`) | Internal | ✅ Reviewed | — |
-| Task / receipt protocol | Internal | ✅ Reviewed | — |
-| MPP channel contracts | Internal | ✅ Reviewed | — |
-| x402 settlement path | Internal | ✅ Reviewed | — |
-| Full external audit | TBD (firm selection in progress) | 🟡 Planned | **Q3 2026** |
-| ZK circuits (Groth16) | — | ⬜ Not started | Post-audit |
+| Component               | Reviewer                         | Status         | Target      |
+| ----------------------- | -------------------------------- | -------------- | ----------- |
+| SDK (`@awel/sdk`)       | Internal                         | 🟡 In progress | —           |
+| Task / receipt protocol | Internal                         | 🟡 Internal    | —           |
+| MPP channel contracts   | Internal                         | 🟡 Internal    | —           |
+| x402 settlement path    | Internal                         | 🟡 Internal    | —           |
+| Full external audit     | TBD (firm selection in progress) | 🟡 Planned     | **Q3 2026** |
+| ZK circuits (Groth16)   | —                                | ⬜ Not started | Post-audit  |
 
 > No external audit has been completed yet. Until the Q3 2026 audit lands, treat all
 > on-chain components as unaudited and cap exposure accordingly.
@@ -286,14 +286,14 @@ anti-gaming measures (stake-weighting, sybil resistance, collusion detection) ar
 ## Zero-knowledge status
 
 Awel is building toward **private receipts** — proving a task was completed and paid for
-*without revealing the task input/output or the amount*. This is early and gated behind a
+_without revealing the task input/output or the amount_. This is early and gated behind a
 feature flag.
 
-| Proof system | Use case | Status | Flag |
-|--------------|----------|--------|------|
-| **Groth16** | Receipt validity (task done + paid) | 🟡 WIP | `ENABLE_ZK` |
-| **PLONK** | Universal setup, circuit upgrades | ⬜ Planned | `ENABLE_ZK` |
-| **Recursive (Nova-style)** | Reputation rollups over many receipts | ⬜ Planned | — |
+| Proof system               | Use case                              | Status     | Flag        |
+| -------------------------- | ------------------------------------- | ---------- | ----------- |
+| **Groth16**                | Receipt validity (task done + paid)   | 🟡 WIP     | `ENABLE_ZK` |
+| **PLONK**                  | Universal setup, circuit upgrades     | ⬜ Planned | `ENABLE_ZK` |
+| **Recursive (Nova-style)** | Reputation rollups over many receipts | ⬜ Planned | —           |
 
 > ZK features are **off by default** and not security-relevant when disabled. Enabling
 > `ENABLE_ZK` activates experimental, unaudited Groth16 circuits — for testing only. Full
@@ -320,11 +320,11 @@ feature flag.
 
 ## SDKs
 
-| Language | Package | Status | Notes |
-|----------|---------|--------|-------|
-| TypeScript | `@awel/sdk` | ✅ Stable-ish | Reference implementation; TS `strict`. |
-| Rust | `awel` (crates.io) | 🟡 Beta | Full task + payment client; channels behind `mpp` feature. |
-| Python | `awel-sdk` (PyPI) | 🟡 Beta | Sync + async clients; discovery + tasks complete. |
+| Language   | Package            | Status     | Notes                                                       |
+| ---------- | ------------------ | ---------- | ----------------------------------------------------------- |
+| TypeScript | `@awel/sdk`        | 🟡 Alpha   | Reference client; transport layer in progress. TS `strict`. |
+| Rust       | `awel` (crates.io) | 🔴 Planned | Interface stubs today; client lands Q3 2026.                |
+| Python     | `awel-sdk` (PyPI)  | 🔴 Planned | Interface stubs today; client lands Q3 2026.                |
 
 All three are generated against the RFCs in [`/spec`](./spec) and share a conformance suite.
 
@@ -332,10 +332,12 @@ All three are generated against the RFCs in [`/spec`](./spec) and share a confor
 // TypeScript
 import { Awel } from "@awel/sdk";
 ```
+
 ```rust
 // Rust
 use awel::Awel;
 ```
+
 ```python
 # Python
 from awel import Awel

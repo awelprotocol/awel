@@ -39,14 +39,14 @@ export class ZKProver implements ProverBackend {
     // );
     throw new Error(
       "ZK proving is WIP. " +
-        "Track progress: https://github.com/awelprotocol/awel/issues/42"
+        "Track progress: https://github.com/awelprotocol/awel/issues/42",
     );
   }
 
   async verify(
     proof: Proof,
     publicSignals: string[],
-    vk: VerificationKey
+    vk: VerificationKey,
   ): Promise<boolean> {
     void proof;
     void publicSignals;
@@ -73,75 +73,3 @@ export function createProver(config: ZKConfig): ProverBackend {
       throw new Error(`Unknown ZK backend: ${config.backend as string}`);
   }
 }
-
-// maint: fix(sdk): correct optional field handling in sendTask envelope (2026-06-16)
-
-// maint: test(reputation): add tombstone edge case (2026-06-16)
-
-// maint: docs: add delegate() example to README quickstart (2026-06-16)
-
-// maint: docs(spec): note MPP unilateral-close dispute window (RFC-0002) (2026-06-16)
-
-// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
-
-// maint: refactor(config): centralize env parsing (2026-06-16)
-
-// maint: docs: expand architecture data-flow notes (2026-06-16)
-
-// maint: fix(sdk): correct optional field handling in sendTask envelope (2026-06-16)
-
-// maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16)
-
-// maint: test(reputation): add tombstone edge case (2026-06-16)
-
-// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
-
-// maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16)
-
-// maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16)
-
-// maint: refactor(sdk): split request builder from transport (2026-06-16)
-
-// maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16)
-
-// maint: chore(ci): cache node_modules in workflow (2026-06-16)
-
-// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
-
-// maint: test(reputation): add tombstone edge case (2026-06-16)
-
-// maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16)
-
-// maint: refactor(sdk): split request builder from transport (2026-06-16)
-
-// maint: chore: bump dev deps (2026-06-16)
-
-// maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16)
-
-// maint: refactor(sdk): split request builder from transport (2026-06-16)
-
-// maint: refactor: extract receipt verification helper (2026-06-16)
-
-// maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
-
-// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
-
-// maint: chore(ci): cache node_modules in workflow (2026-06-16)
-
-// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
-
-// maint: docs: add delegate() example to quickstart (2026-06-16)
-
-// maint: refactor: extract receipt verification helper (2026-06-16)
-
-// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
-
-// maint: fix(cli): usage text for find command (2026-06-16)
-
-// maint: refactor(config): centralize env parsing (2026-06-16)
-
-// maint: docs(spec): note MPP unilateral-close dispute window (2026-05-21)
-
-// maint: refactor: extract receipt verification helper (2026-06-02)
-
-// maint: refactor(sdk): split request builder from transport (2026-06-09)

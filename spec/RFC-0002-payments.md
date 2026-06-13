@@ -1,14 +1,14 @@
 # RFC-0002: Payments
 
-| Field | Value |
-|-------|-------|
-| **RFC** | 0002 |
-| **Title** | Payments — x402 & MPP channels |
-| **Status** | Draft |
-| **Author** | M. Okonjo (`@mokonjo`), Awel core |
-| **Created** | 2026-03-04 |
-| **Requires** | [RFC-0001](./RFC-0001-task-protocol.md) |
-| **Supersedes** | — |
+| Field          | Value                                   |
+| -------------- | --------------------------------------- |
+| **RFC**        | 0002                                    |
+| **Title**      | Payments — x402 & MPP channels          |
+| **Status**     | Draft                                   |
+| **Author**     | M. Okonjo (`@mokonjo`), Awel core       |
+| **Created**    | 2026-03-04                              |
+| **Requires**   | [RFC-0001](./RFC-0001-task-protocol.md) |
+| **Supersedes** | —                                       |
 
 ## Abstract
 
@@ -29,12 +29,12 @@ The key words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY follow RFC 2119.
 
 ## 2. Rail selection
 
-| | x402 | MPP |
-|---|---|---|
-| Granularity | per task | per chunk / per token |
-| On-chain ops | 1 settle per task | 1 open + 1 settle per channel |
-| Best for | occasional, chunky jobs | hundreds of calls to one worker |
-| Escrow | optional escrow account | channel balance is the escrow |
+|              | x402                    | MPP                             |
+| ------------ | ----------------------- | ------------------------------- |
+| Granularity  | per task                | per chunk / per token           |
+| On-chain ops | 1 settle per task       | 1 open + 1 settle per channel   |
+| Best for     | occasional, chunky jobs | hundreds of calls to one worker |
+| Escrow       | optional escrow account | channel balance is the escrow   |
 
 Requesters SHOULD use MPP when they expect repeated tasks to the same worker, and x402
 otherwise.
@@ -61,9 +61,9 @@ x402 layers a payment requirement onto the task handshake using HTTP `402 Paymen
      "rail": "x402",
      "amountUsdc": "0.10",
      "payTo": "<solana-account>",
-     "escrow": true,               // worker requires escrow vs. direct pay
-     "nonce": "…",                 // ties payment to this task
-     "expiresAt": "2026-03-04T10:05:00Z"
+     "escrow": true, // worker requires escrow vs. direct pay
+     "nonce": "…", // ties payment to this task
+     "expiresAt": "2026-03-04T10:05:00Z",
    }
    ```
 
@@ -97,7 +97,12 @@ close. This amortizes on-chain cost across many tasks and gives sub-second payme
 #### open
 
 ```jsonc
-{ "op": "open", "with": "did:awel:7Hn2…", "depositUsdc": "5.00", "channelId": "chn_…" }
+{
+  "op": "open",
+  "with": "did:awel:7Hn2…",
+  "depositUsdc": "5.00",
+  "channelId": "chn_…",
+}
 ```
 
 - The opener funds the channel on-chain via the MPP program. `depositUsdc` is the ceiling of
@@ -111,10 +116,10 @@ For each task, the payer sends a **signed channel update** moving balance toward
 ```jsonc
 {
   "channelId": "chn_…",
-  "seq": 42,                 // monotonically increasing
+  "seq": 42, // monotonically increasing
   "balance": { "payer": "4.86", "payee": "0.14" },
   "taskId": "tsk_…",
-  "sig": "ed25519:…"         // payer's signature over the update
+  "sig": "ed25519:…", // payer's signature over the update
 }
 ```
 
@@ -127,7 +132,13 @@ For each task, the payer sends a **signed channel update** moving balance toward
 #### settle (close)
 
 ```jsonc
-{ "op": "close", "channelId": "chn_…", "final": { /* latest signed update */ } }
+{
+  "op": "close",
+  "channelId": "chn_…",
+  "final": {
+    /* latest signed update */
+  },
+}
 ```
 
 - Either party MAY close by submitting the latest signed update to the MPP program. The
@@ -140,11 +151,11 @@ For each task, the payer sends a **signed channel update** moving balance toward
 
 ## 5. Escrow & refunds
 
-| Rail | Escrow | Refund on `failed` | Refund on partial |
-|------|--------|--------------------|-------------------|
-| x402 (escrow) | Account locked to task `id` + worker | Full → requester | Pro-rata per agreement |
-| x402 (direct) | None | Depends on worker | Depends on worker |
-| MPP | Channel balance | No update is signed → no payment moved | Update reflects only work paid for |
+| Rail          | Escrow                               | Refund on `failed`                     | Refund on partial                  |
+| ------------- | ------------------------------------ | -------------------------------------- | ---------------------------------- |
+| x402 (escrow) | Account locked to task `id` + worker | Full → requester                       | Pro-rata per agreement             |
+| x402 (direct) | None                                 | Depends on worker                      | Depends on worker                  |
+| MPP           | Channel balance                      | No update is signed → no payment moved | Update reflects only work paid for |
 
 - For x402 escrow, a `failed` task (RFC-0001 §4) MUST release the full escrow back to the
   requester; a partial completion MAY release a pro-rata amount to the worker per a
@@ -160,11 +171,11 @@ node does not and cannot enforce them.
 ```ts
 new Awel({
   limits: {
-    perTaskUsdc: "0.50",         // reject any single task above this
-    perCounterpartyUsdc: "10.00",// rolling cap per worker DID per window
-    channelCeilingUsdc: "5.00",  // max deposit into any one MPP channel
-    dailyUsdc: "50.00"           // global daily spend ceiling
-  }
+    perTaskUsdc: "0.50", // reject any single task above this
+    perCounterpartyUsdc: "10.00", // rolling cap per worker DID per window
+    channelCeilingUsdc: "5.00", // max deposit into any one MPP channel
+    dailyUsdc: "50.00", // global daily spend ceiling
+  },
 });
 ```
 

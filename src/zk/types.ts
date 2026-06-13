@@ -38,7 +38,7 @@ export interface ProverBackend {
   verify(
     proof: Proof,
     publicSignals: string[],
-    vk: VerificationKey
+    vk: VerificationKey,
   ): Promise<boolean>;
 }
 

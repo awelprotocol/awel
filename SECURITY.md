@@ -23,12 +23,12 @@ reply with it.
 
 ### What to expect
 
-| Stage | Target |
-|-------|--------|
-| Acknowledgement of report | within **48 hours** |
-| Initial severity assessment | within **5 business days** |
-| Fix or mitigation plan | depends on severity; critical issues prioritized immediately |
-| Public disclosure | coordinated with the reporter after a fix ships |
+| Stage                       | Target                                                       |
+| --------------------------- | ------------------------------------------------------------ |
+| Acknowledgement of report   | within **48 hours**                                          |
+| Initial severity assessment | within **5 business days**                                   |
+| Fix or mitigation plan      | depends on severity; critical issues prioritized immediately |
+| Public disclosure           | coordinated with the reporter after a fix ships              |
 
 We practice coordinated disclosure. We will credit you in the advisory unless you prefer to
 remain anonymous. We do not currently run a paid bug-bounty program; this may change after the
@@ -39,12 +39,12 @@ Q3 2026 audit.
 Security fixes are backported to the versions below. Pre-1.0, only the latest minor receives
 guaranteed fixes — pin a release and upgrade promptly.
 
-| Version | Supported |
-|---------|-----------|
-| `0.5.x` | ✅ Yes (current) |
+| Version | Supported              |
+| ------- | ---------------------- |
+| `0.5.x` | ✅ Yes (current)       |
 | `0.4.x` | ⚠️ Critical fixes only |
-| `0.3.x` | ❌ No |
-| `< 0.3` | ❌ No |
+| `0.3.x` | ❌ No                  |
+| `< 0.3` | ❌ No                  |
 
 ## Scope
 

@@ -17,11 +17,11 @@ conventions, and PR rules.
 
 We use a three-tier branch model:
 
-| Branch | Purpose | Protected |
-|--------|---------|-----------|
-| `main` | Released, tagged code. Always deployable. | ✅ |
-| `develop` | Integration branch for the next release. | ✅ |
-| `feat/*`, `fix/*`, `docs/*`, `rfc/*` | Topic branches off `develop`. | — |
+| Branch                               | Purpose                                   | Protected |
+| ------------------------------------ | ----------------------------------------- | --------- |
+| `main`                               | Released, tagged code. Always deployable. | ✅        |
+| `develop`                            | Integration branch for the next release.  | ✅        |
+| `feat/*`, `fix/*`, `docs/*`, `rfc/*` | Topic branches off `develop`.             | —         |
 
 - Branch off `develop`, not `main`.
 - Name branches by type: `feat/mpp-streaming`, `fix/x402-nonce-replay`, `docs/architecture`,

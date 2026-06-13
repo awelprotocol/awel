@@ -1,7 +1,7 @@
 # ZK Roadmap
 
 Awel is building toward **private receipts**: cryptographic proof that a task was completed
-and paid for, *without* revealing the task input/output or the payment amount, and toward
+and paid for, _without_ revealing the task input/output or the payment amount, and toward
 **reputation rollups** that compress many receipts into a single succinct proof.
 
 This work is **experimental and gated behind the `ENABLE_ZK` feature flag**. It is off by
@@ -18,11 +18,11 @@ default, unaudited, and not security-relevant when disabled. Do not enable it in
 
 ## Timeline
 
-| Phase | Proof system | Scope | Status | Gate |
-|-------|--------------|-------|--------|------|
-| **Phase 1** | **Groth16** | Receipt-validity circuit (task done + paid). Trusted setup per circuit. | 🟡 **WIP** | `ENABLE_ZK` |
-| **Phase 2** | **PLONK** | Universal/updatable setup so circuits can evolve without a new ceremony. Migrate receipt circuit off Groth16. | ⬜ **Planned** | `ENABLE_ZK` |
-| **Phase 3** | **Recursive (Nova-style folding)** | Reputation rollups — fold N receipts into one succinct proof. `O(1)` verification of an agent's history. | ⬜ **Planned** | — |
+| Phase       | Proof system                       | Scope                                                                                                         | Status         | Gate        |
+| ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------- | ----------- |
+| **Phase 1** | **Groth16**                        | Receipt-validity circuit (task done + paid). Trusted setup per circuit.                                       | 🟡 **WIP**     | `ENABLE_ZK` |
+| **Phase 2** | **PLONK**                          | Universal/updatable setup so circuits can evolve without a new ceremony. Migrate receipt circuit off Groth16. | ⬜ **Planned** | `ENABLE_ZK` |
+| **Phase 3** | **Recursive (Nova-style folding)** | Reputation rollups — fold N receipts into one succinct proof. `O(1)` verification of an agent's history.      | ⬜ **Planned** | —           |
 
 ## Phase 1 — Groth16 (WIP)
 

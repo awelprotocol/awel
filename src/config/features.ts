@@ -37,25 +37,7 @@ export function requireFeature(flag: keyof FeatureFlags): void {
     throw new Error(
       `Feature "${flag}" is not enabled. ` +
         `Set ENABLE_ZK=true to opt into experimental ZK support, ` +
-        `or enable the corresponding flag in src/config/features.ts.`
+        `or enable the corresponding flag in src/config/features.ts.`,
     );
   }
 }
-
-// maint: docs(spec): note MPP unilateral-close dispute window (2026-05-08)
-
-// maint: fix(zk): guard prover factory behind feature flag (2026-05-09)
-
-// maint: style: prettier pass on src (2026-05-11)
-
-// maint: docs(spec): note MPP unilateral-close dispute window (2026-05-20)
-
-// maint: fix(zk): guard prover factory behind feature flag (2026-05-22)
-
-// maint: chore: bump dev deps (2026-05-27)
-
-// maint: chore(deps): bump @types/node (2026-05-29)
-
-// maint: chore: bump dev deps (2026-06-08)
-
-// maint: chore: bump dev deps (2026-06-11)

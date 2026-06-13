@@ -66,7 +66,11 @@ export class SlashingEngine extends EventEmitter {
 
     if (s.missedHeartbeats >= this.params.downtimeThreshold) {
       s.missedHeartbeats = 0; // reset window
-      return this.slash(agent, AgentOffense.DOWNTIME, "auto:downtime_threshold");
+      return this.slash(
+        agent,
+        AgentOffense.DOWNTIME,
+        "auto:downtime_threshold",
+      );
     }
     return null;
   }
@@ -81,7 +85,11 @@ export class SlashingEngine extends EventEmitter {
    * Core slash. Computes the penalty, burns it from the agent's stake, jails
    * the agent, records the offense, and tombstones on repeat offenses.
    */
-  slash(agent: AgentId, offense: AgentOffense, evidence: string): ReputationSlash {
+  slash(
+    agent: AgentId,
+    offense: AgentOffense,
+    evidence: string,
+  ): ReputationSlash {
     const s = this.getStake(agent);
 
     if (this.tombstoned.has(agent)) {
@@ -100,7 +108,7 @@ export class SlashingEngine extends EventEmitter {
       throw new Error(
         `Cooldown active: ${offense} for ${agent}, ` +
           `last=${lastSameType.epoch}, current=${this.currentEpoch}, ` +
-          `need=${this.params.cooldownEpochs} epochs gap`
+          `need=${this.params.cooldownEpochs} epochs gap`,
       );
     }
 
@@ -126,7 +134,11 @@ export class SlashingEngine extends EventEmitter {
     s.offenses.push(slashRecord);
     this.slashingHistory.push(slashRecord);
 
-    this.emit("slashed", { agent, slash: slashRecord, remainingStake: s.stake });
+    this.emit("slashed", {
+      agent,
+      slash: slashRecord,
+      remainingStake: s.stake,
+    });
 
     if (s.offenses.length >= this.params.maxOffensesBeforeTombstone) {
       this.tombstone(agent);
@@ -166,7 +178,7 @@ export class SlashingEngine extends EventEmitter {
   /** Agents currently eligible for Discovery (not jailed, not banned, staked). */
   getActiveAgents(): AgentStake[] {
     return [...this.stakes.values()].filter(
-      (s) => !s.isJailed && !this.tombstoned.has(s.agent) && s.stake > 0n
+      (s) => !s.isJailed && !this.tombstoned.has(s.agent) && s.stake > 0n,
     );
   }
 
@@ -194,74 +206,4 @@ export class SlashingEngine extends EventEmitter {
   }
 }
 
-// maint: chore(ci): cache node_modules in workflow (2026-06-16)
-
-// maint: docs: add delegate() example to README quickstart (2026-06-16)
-
-// maint: docs: expand architecture data-flow notes (2026-06-16)
-
-// maint: docs: add delegate() example to README quickstart (2026-06-16)
-
-// maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16)
-
-// maint: fix(sdk): correct optional field handling in sendTask envelope (2026-06-16)
-
-// maint: docs: add delegate() example to README quickstart (2026-06-16)
-
-// maint: chore(ci): cache node_modules in workflow (2026-06-16)
-
-// maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16)
-
-// maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16)
-
-// maint: fix(cli): usage text for find command (2026-06-16)
-
-// maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
-
-// maint: docs: add delegate() example to quickstart (2026-06-16)
-
-// maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16)
-
-// maint: fix(cli): usage text for find command (2026-06-16)
-
-// maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16)
-
-// maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16)
-
-// maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16)
-
-// maint: chore(ci): cache node_modules in workflow (2026-06-16)
-
-// maint: docs: expand architecture data-flow notes (2026-06-16)
-
-// maint: fix(cli): usage text for find command (2026-06-16)
-
-// maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16)
-
-// maint: feat(sdk): re-land discovery filter with stable ordering (2026-06-16)
-
-// maint: refactor(sdk): split request builder from transport (2026-06-16)
-
-// maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16)
-
-// maint: test(reputation): add tombstone edge case (2026-06-16)
-
-// maint: refactor(config): centralize env parsing (2026-06-16)
-
-// maint: refactor(config): centralize env parsing (2026-06-16)
-
-// maint: test(sdk): typed envelope round-trip (2026-06-16)
-
-// maint: docs: expand architecture data-flow notes (2026-06-16)
-
 // fix: minimum slash amount to avoid zero-slash
-
-// maint: fix(reputation): bigint underflow guard on slash amount (2026-05-07)
-
-// maint: test(sdk): typed envelope round-trip (2026-05-09)
-
-// maint: fix(cli): usage text for find command (2026-05-13)
-
-// maint: refactor(config): centralize env parsing (2026-05-18)
-
-// maint: style: prettier pass on src (2026-05-29)

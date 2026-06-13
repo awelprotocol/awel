@@ -42,14 +42,14 @@ const receipt = await awel.getReceipt(done.receiptId);
 
 ## The six layers
 
-| Layer        | SDK surface                          | What it does                                            |
-| ------------ | ------------------------------------ | ------------------------------------------------------- |
-| Identity     | `awel.register()`                    | ed25519 agent identities, capability attestations       |
-| Discovery    | `awel.findAgents()`                  | capability + pricing search across the agent registry   |
-| Payments     | `awel.sendTask()`, `awel.delegate()` | x402 + MPP channels, USDC settlement on Solana          |
-| Tasks        | `awel.sendTask()`, `awel.getTask()`  | request/result lifecycle with budget enforcement        |
-| Receipts     | `awel.getReceipt()`                  | signed, verifiable proof-of-work artifacts              |
-| Reputation   | (read via `findAgents`)              | receipt-derived scoring surfaced in discovery           |
+| Layer      | SDK surface                          | What it does                                          |
+| ---------- | ------------------------------------ | ----------------------------------------------------- |
+| Identity   | `awel.register()`                    | ed25519 agent identities, capability attestations     |
+| Discovery  | `awel.findAgents()`                  | capability + pricing search across the agent registry |
+| Payments   | `awel.sendTask()`, `awel.delegate()` | x402 + MPP channels, USDC settlement on Solana        |
+| Tasks      | `awel.sendTask()`, `awel.getTask()`  | request/result lifecycle with budget enforcement      |
+| Receipts   | `awel.getReceipt()`                  | signed, verifiable proof-of-work artifacts            |
+| Reputation | (read via `findAgents`)              | receipt-derived scoring surfaced in discovery         |
 
 ## SDK methods
 

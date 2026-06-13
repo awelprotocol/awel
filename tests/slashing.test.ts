@@ -15,7 +15,7 @@ describe("SlashingEngine", () => {
     const slash = engine.slash(
       "agent:alice",
       AgentOffense.FAILED_TASK,
-      "task_hash_1"
+      "task_hash_1",
     );
     expect(slash.amount).toBe(50000n); // 5% of 1M
     expect(engine.getAgentState("agent:alice")!.stake).toBe(950000n);
@@ -55,11 +55,7 @@ describe("SlashingEngine", () => {
   test("different offense types slash independently", () => {
     engine.slash("agent:alice", AgentOffense.FAILED_TASK, "ev1");
     // Different type — no cooldown conflict
-    const slash = engine.slash(
-      "agent:alice",
-      AgentOffense.DISPUTE_LOST,
-      "ev2"
-    );
+    const slash = engine.slash("agent:alice", AgentOffense.DISPUTE_LOST, "ev2");
     expect(slash.type).toBe(AgentOffense.DISPUTE_LOST);
   });
 
@@ -67,7 +63,7 @@ describe("SlashingEngine", () => {
     const slash = engine.slash(
       "agent:bob",
       AgentOffense.INVALID_RESULT,
-      "bad_result_hash"
+      "bad_result_hash",
     );
     expect(slash.amount).toBe(100000n); // 20% of 500k
     expect(engine.getAgentState("agent:bob")!.stake).toBe(400000n);
@@ -88,7 +84,7 @@ describe("SlashingEngine", () => {
       engine.slash("agent:alice", AgentOffense.FAILED_TASK, `ev${i}`);
     }
     expect(() => engine.registerAgent("agent:alice", 999n)).toThrow(
-      /tombstoned/
+      /tombstoned/,
     );
   });
 

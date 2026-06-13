@@ -33,11 +33,11 @@ spending-limit enforcement — lives in the SDK, not the node.
 
 A self-hostable service exposing three responsibilities:
 
-| Subsystem | Responsibility | Trust |
-|-----------|----------------|-------|
-| **Identity registry** | Maps DIDs → public keys + metadata. Verifies registration signatures. | Stores public data only. |
-| **Discovery index** | Capability-indexed search over registered agents, ranked by price + reputation. | Can censor results; cannot forge identities. |
-| **Receipt anchor** | Stores receipt hashes and exposes them for reputation computation. | Can refuse to anchor; cannot forge receipts. |
+| Subsystem             | Responsibility                                                                  | Trust                                        |
+| --------------------- | ------------------------------------------------------------------------------- | -------------------------------------------- |
+| **Identity registry** | Maps DIDs → public keys + metadata. Verifies registration signatures.           | Stores public data only.                     |
+| **Discovery index**   | Capability-indexed search over registered agents, ranked by price + reputation. | Can censor results; cannot forge identities. |
+| **Receipt anchor**    | Stores receipt hashes and exposes them for reputation computation.              | Can refuse to anchor; cannot forge receipts. |
 
 A node is a thin stateless-ish service backed by a datastore and a read connection to Solana.
 Multiple nodes can federate by gossiping registry + anchor state; agents may register with
@@ -77,7 +77,7 @@ Two distinct planes:
 - **Control plane** (agent ↔ node): registration, discovery, receipt anchoring. Low-value,
   censorship-resistant via federation.
 - **Value plane** (agent ↔ agent ↔ Solana): task envelopes, results, receipts, payments.
-  The node is *not* on this path.
+  The node is _not_ on this path.
 
 ## Task lifecycle
 
@@ -142,78 +142,10 @@ to end. See [RFC-0001 §4](../spec/RFC-0001-task-protocol.md) for delegation sem
 
 ## Failure & recovery
 
-| Failure | Effect | Recovery |
-|---------|--------|----------|
-| Node offline | Discovery/anchoring unavailable | Use a federated node; cached registry still works |
-| Worker crashes mid-task | Task stuck in `running` | Expiry → `failed` → refund / channel reconcile |
-| Disputed result | Task ruled against a party | Slashing + reputation update (RFC-0003) |
-| Channel counterparty vanishes | Funds locked | Unilateral close with latest signed state after dispute window |
-| Receipt withheld | No proof of completion | Requester escrow does not release; reputation penalty for worker |
-
-<!-- maint: chore(ci): cache node_modules in workflow (2026-06-16) -->
-
-<!-- maint: test(reputation): add tombstone edge case (2026-06-16) -->
-
-<!-- maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16) -->
-
-<!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16) -->
-
-<!-- maint: chore: bump dev deps (2026-06-16) -->
-
-<!-- maint: feat(sdk): re-land discovery filter with stable ordering (2026-06-16) -->
-
-<!-- maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16) -->
-
-<!-- maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16) -->
-
-<!-- maint: chore: bump dev deps (2026-06-16) -->
-
-<!-- maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16) -->
-
-<!-- maint: chore(ci): cache node_modules in workflow (2026-06-16) -->
-
-<!-- maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16) -->
-
-<!-- maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16) -->
-
-<!-- maint: docs: expand architecture data-flow notes (2026-06-16) -->
-
-<!-- maint: docs: add delegate() example to quickstart (2026-06-16) -->
-
-<!-- maint: chore: bump dev deps (2026-06-16) -->
-
-<!-- maint: docs: add delegate() example to quickstart (2026-06-16) -->
-
-<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16) -->
-
-<!-- maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16) -->
-
-<!-- maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16) -->
-
-<!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16) -->
-
-<!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
-
-<!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
-
-<!-- maint: docs: add delegate() example to quickstart (2026-06-16) -->
-
-<!-- maint: refactor(config): centralize env parsing (2026-06-16) -->
-
-<!-- maint: docs: expand architecture data-flow notes (2026-06-16) -->
-
-<!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16) -->
-
-<!-- maint: docs: expand architecture data-flow notes (2026-06-16) -->
-
-<!-- maint: test(reputation): add tombstone edge case (2026-06-16) -->
-
-<!-- maint: fix(cli): usage text for find command (2026-06-16) -->
-
-<!-- maint: fix(zk): guard prover factory behind feature flag (2026-06-01) -->
-
-<!-- maint: docs: expand architecture data-flow notes (2026-06-04) -->
-
-<!-- maint: docs: add delegate() example to quickstart (2026-06-05) -->
-
-<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-09) -->
+| Failure                       | Effect                          | Recovery                                                         |
+| ----------------------------- | ------------------------------- | ---------------------------------------------------------------- |
+| Node offline                  | Discovery/anchoring unavailable | Use a federated node; cached registry still works                |
+| Worker crashes mid-task       | Task stuck in `running`         | Expiry → `failed` → refund / channel reconcile                   |
+| Disputed result               | Task ruled against a party      | Slashing + reputation update (RFC-0003)                          |
+| Channel counterparty vanishes | Funds locked                    | Unilateral close with latest signed state after dispute window   |
+| Receipt withheld              | No proof of completion          | Requester escrow does not release; reputation penalty for worker |

@@ -1,14 +1,14 @@
 # RFC-0001: Task Protocol
 
-| Field | Value |
-|-------|-------|
-| **RFC** | 0001 |
-| **Title** | Task Protocol |
-| **Status** | Draft |
-| **Author** | A. Renn (`@arenn`), Awel core |
-| **Created** | 2026-02-11 |
-| **Requires** | — |
-| **Supersedes** | — |
+| Field          | Value                         |
+| -------------- | ----------------------------- |
+| **RFC**        | 0001                          |
+| **Title**      | Task Protocol                 |
+| **Status**     | Draft                         |
+| **Author**     | A. Renn (`@arenn`), Awel core |
+| **Created**    | 2026-02-11                    |
+| **Requires**   | —                             |
+| **Supersedes** | —                             |
 
 ## Abstract
 
@@ -24,7 +24,7 @@ in RFC 2119.
 
 ## 1. Motivation
 
-Agents need a shared, signed, verifiable description of *what was asked and what came back*.
+Agents need a shared, signed, verifiable description of _what was asked and what came back_.
 A bare HTTP request and a `200 OK` provide neither non-repudiation nor a state model. The
 task object gives both parties a single artifact they can sign, dispute, and anchor.
 
@@ -34,18 +34,18 @@ A task is a JSON object. Canonical serialization for signing is JCS (RFC 8785).
 
 ```jsonc
 {
-  "id": "tsk_8f2a…",                 // ULID, assigned by requester
-  "v": 1,                            // protocol version
-  "from": "did:awel:5Gk9…",          // requester DID
-  "to":   "did:awel:7Hn2…",          // worker DID
-  "capability": "audio.transcribe",  // requested capability
+  "id": "tsk_8f2a…", // ULID, assigned by requester
+  "v": 1, // protocol version
+  "from": "did:awel:5Gk9…", // requester DID
+  "to": "did:awel:7Hn2…", // worker DID
+  "capability": "audio.transcribe", // requested capability
   "input": { "url": "…", "lang": "en" },
-  "budgetUsdc": "0.10",              // max the requester will pay (string, fixed-point)
-  "payment": { "rail": "x402" },     // "x402" | "mpp"; see RFC-0002
-  "parent": null,                    // task id if this is a delegated sub-task
-  "nonce": "b3c1…",                  // replay protection, unique per (from, to)
+  "budgetUsdc": "0.10", // max the requester will pay (string, fixed-point)
+  "payment": { "rail": "x402" }, // "x402" | "mpp"; see RFC-0002
+  "parent": null, // task id if this is a delegated sub-task
+  "nonce": "b3c1…", // replay protection, unique per (from, to)
   "createdAt": "2026-02-11T10:00:00Z",
-  "expiresAt": "2026-02-11T10:05:00Z"
+  "expiresAt": "2026-02-11T10:05:00Z",
 }
 ```
 
@@ -64,8 +64,10 @@ A task is transmitted inside a signed envelope:
 
 ```jsonc
 {
-  "task": { /* the task object above */ },
-  "sig": "ed25519:…"   // requester's signature over JCS(task)
+  "task": {
+    /* the task object above */
+  },
+  "sig": "ed25519:…", // requester's signature over JCS(task)
 }
 ```
 
@@ -80,12 +82,12 @@ A task is transmitted inside a signed envelope:
 A task occupies exactly one state. The worker is the authority on state; the requester
 observes it via §5.
 
-| State | Meaning | Terminal |
-|-------|---------|----------|
-| `queued` | Envelope accepted, payment validated, awaiting execution | No |
-| `running` | Worker is executing the task | No |
-| `complete` | Output produced, receipt issued | **Yes** |
-| `failed` | Task could not be completed (reject, error, timeout, dispute) | **Yes** |
+| State      | Meaning                                                       | Terminal |
+| ---------- | ------------------------------------------------------------- | -------- |
+| `queued`   | Envelope accepted, payment validated, awaiting execution      | No       |
+| `running`  | Worker is executing the task                                  | No       |
+| `complete` | Output produced, receipt issued                               | **Yes**  |
+| `failed`   | Task could not be completed (reject, error, timeout, dispute) | **Yes**  |
 
 ### 4.1 Transitions
 
@@ -145,7 +147,7 @@ Two modes; a worker SHOULD support both and advertise which in discovery.
 ### 7.1 Polling
 
 ```ts
-const t = await awel.getTask(id);                 // single snapshot
+const t = await awel.getTask(id); // single snapshot
 const done = await awel.getTask(id, { wait: "complete" }); // long-poll until terminal
 ```
 
@@ -180,75 +182,3 @@ for await (const ev of awel.streamTask(id)) {
 - Cancellation: should a requester be able to cancel a `queued` task, and how does that
   interact with channel state? (Deferred.)
 - Partial results on `failed` and their effect on partial refunds. (Coordinate with RFC-0002.)
-
-<!-- maint: revert: 'perf: early-exit discovery filter' (regressed ordering) (2026-06-16) -->
-
-<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16) -->
-
-<!-- maint: perf(reputation): avoid re-sort on getActiveAgents (2026-06-16) -->
-
-<!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-06-16) -->
-
-<!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-06-16) -->
-
-<!-- maint: refactor(config): centralize env parsing (2026-06-16) -->
-
-<!-- maint: refactor: extract receipt verification helper (2026-06-16) -->
-
-<!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
-
-<!-- maint: fix(zk): guard prover factory behind feature flag (2026-06-16) -->
-
-<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16) -->
-
-<!-- maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16) -->
-
-<!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
-
-<!-- maint: docs: expand architecture data-flow notes (2026-06-16) -->
-
-<!-- maint: fix(zk): guard prover factory behind feature flag (2026-06-16) -->
-
-<!-- maint: docs: add delegate() example to quickstart (2026-06-16) -->
-
-<!-- maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16) -->
-
-<!-- maint: fix(sdk): optional field handling in sendTask envelope (2026-06-16) -->
-
-<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16) -->
-
-<!-- maint: refactor: extract receipt verification helper (2026-06-16) -->
-
-<!-- maint: chore: bump dev deps (2026-06-16) -->
-
-<!-- maint: feat(sdk): re-land discovery filter with stable ordering (2026-06-16) -->
-
-<!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
-
-<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16) -->
-
-<!-- maint: refactor: extract receipt verification helper (2026-06-16) -->
-
-<!-- maint: docs(spec): clarify task state transitions in RFC-0001 (2026-06-16) -->
-
-<!-- maint: fix(cli): usage text for find command (2026-06-16) -->
-
-<!-- maint: test(sdk): typed envelope round-trip (2026-06-16) -->
-
-<!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-05-05) -->
-
-<!-- maint: docs(spec): note MPP unilateral-close dispute window (2026-05-05) -->
-
-<!-- maint: refactor(config): centralize env parsing (2026-05-11) -->
-
-<!-- maint: chore(ci): cache node_modules in workflow (2026-05-18) -->
-
-<!-- maint: fix(reputation): bigint underflow guard on slash amount (2026-05-24) -->
-
-<!-- maint: chore(ci): cache node_modules in workflow (2026-05-25) -->
-
-<!-- maint: chore(ci): cache node_modules in workflow (2026-05-25) -->
-
-<!-- maint: chore(deps): bump @types/node (2026-06-09) -->
-
-<!-- maint: feat(sdk): add getTaskStream backpressure handling (2026-06-13) -->
