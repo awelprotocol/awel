@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/banner.jpg" alt="Awel" width="100%"></p>
+
 <div align="center">
 
 # Awel
